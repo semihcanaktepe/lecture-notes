@@ -1,0 +1,128 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{tikz}
+\usetikzlibrary{arrows, arrows.meta}
+\usepackage[utf8]{inputenc}
+\usepackage{amsfonts}
+\usepackage{mathptmx}
+\usepackage{enumerate}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{setspace}
+\usepackage[document]{ragged2e}
+\usepackage{fancyhdr}
+\usepackage[left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm]{geometry}
+\usepackage{gb4e}
+\author{Semih Can Aktepe}
+\title{COGS543 Assignment 1}
+
+\spacing{1.25}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Computational Semantics}
+\rhead{\today}
+\cfoot{\thepage}
+
+\begin{document}\thispagestyle{empty}
+\maketitle
+\justify
+\textbf{Question 1:}
+\begin{enumerate}[(a)]
+\item $\lambda f \lambda g \lambda h \lambda x.(f(g(h x)))$ = $(\lambda f.( \lambda g.( \lambda h.( \lambda x.(f(g(h x)))))))$
+\item $xxxx$ = $(((xx)x)x)$
+\item $\lambda x.x\lambda y.y$ = $(\lambda x.(x\lambda y.(y))))$
+\item $\lambda x.(x\lambda y.yxx)x$ = $(\lambda x.((x\lambda y.((yx)x)))x))$
+\end{enumerate}
+
+\noindent \textbf{Question 2:}
+\begin{enumerate}[(a)]
+\item $(xy)$ = $xy$
+\item $(x(yz))$ = $x(yz)$
+\item $((xy)z)$ = $xyz$
+\item $(\lambda x.x)$ = $\lambda x.x$
+\item $(\lambda y.(\lambda x.x))$ = $\lambda y.\lambda x.x$
+\item $(\lambda z.(x(\lambda y.(yz))))$ = $\lambda z.x\lambda y.yz$
+\item $(x(\lambda z.(\lambda y.(yz))))$ = $x\lambda z.\lambda y.yz$
+\item $(x(\lambda x.x))$ = $x\lambda x.x$
+\item $((\lambda y.(\lambda x.x))(\lambda x.x))$ = $\lambda y.\lambda x.x\lambda x.x$
+\item $(((\lambda y.(\lambda x.x))(\lambda x.x))(xy))$ = $\lambda y.\lambda x.x\lambda x.x(xy)$
+\item $((x(yz))((xy)z))$ = $x(yz)(xyz)$
+\item $(\lambda x.(\lambda y.(\lambda z.((xz)(yz)))))$ = $\lambda x.\lambda y.\lambda z.xz(yz)$
+\item $(((ab)(cd))((ef)(gh)))$ = $ab(cd)(ef(gh))$
+\item $(\lambda x.((\lambda y.(yx))(\lambda v.v)z)u)(\lambda w.w)$ = $\lambda x.\lambda y.yx\lambda v.vzu\lambda w.w$
+\end{enumerate}
+
+\clearpage
+
+\noindent \textbf{Question 3:}
+\begin{enumerate}[(a)]
+\item $(\lambda f.fx)g $ = $gx$
+\item $(\lambda f.fx)ga$ = $gxa$
+\item $(\lambda f.fx)(ga)$ = $gax$
+\item $(\lambda f\lambda x.fx)g a$ = $ga$
+\item $(\lambda x\lambda y \lambda z.x(yz))f$ = $\lambda y.\lambda z.f(yz)$
+\item $(\lambda x. m x)j$ = $mj$
+\item $(\lambda y. y j)m$ = $mj$
+\item $(\lambda x.\lambda y. y(y x))jm$ = $m(mj)$
+\item $(\lambda y.y j)(\lambda x. m x)$ = $mj$
+\item $(\lambda x. xx)(\lambda y. yyy)$ = $(\lambda y.yyy)\cdots (\lambda y.yyy)$ (infinite loop)
+\end{enumerate}
+
+\noindent \textbf{Question 4:}\\
+\begin{tabular}{cc}
+M_1 & M_2 \\ \hline
+$D=\lbrace d_1,d_2,d_3\rbrace$ & $D=\lbrace d_1,d_2,d_3\rbrace$\\
+$F=\lbrace d_1,d_2,d_3\rbrace$ & $F=\lbrace d_1,d_2,d_3\rbrace$\\
+$E=\lbrace \langle d_1,d_1\rangle, \langle d_2,d_2\rangle,\langle d_3,d_3\rangle\rbrace$ & 
+$E=\lbrace \langle d_1,d_1\rangle, \langle d_2,d_2\rangle\rbrace$
+\end{tabular}
+
+\vspace{10pt}
+
+\noindent Model 1 makes the notation true, and model 2 makes it false.\\
+
+\noindent \textbf{Question 5:}\\
+There are some models where $\forall x.Fx \rightarrow \exists y.Gxy \models \exists x.Fx$ does not hold. According to the model, $M=\langle D=\lbrace d_1,d_2,d_3\rbrace$, $F=\lbrace d_1,d_2,d_3\rbrace$, $G=\emptyset\rangle$, the notation $\forall x.Fx$ is true, but $\exists y.Gxy$ is false. Therefore, the truth value of the left side is false. However, for the same model, the right side $\exists x.Fx$ is true, so there is a model that makes one true but the other false. Another way of showing $P$ does not imply $Q$ is to check the possible truth values of the components of the notation.\\
+
+\begin{tabular}{ccccc}
+$\forall x.Fx$ & $\exists y.Gxy$ & $\forall x.Fx \rightarrow \exists y.Gxy$ & $\exists x.Fx$\\ \hline
+1 & 1 & 1 & 1\\
+1 & 0 & 0 & 1\\
+0 & 1 & 1 & 1/0\\
+0 & 0 & 0 & 1/0\\
+\end{tabular}
+
+\vspace{10pt}
+\noindent When we look at the last three rows of the table, the truth value of $P$ does not always match the truth value of $Q$. Therefore, this implication does not hold.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

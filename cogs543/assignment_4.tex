@@ -1,0 +1,196 @@
+\documentclass[12pt,landscape]{article}
+\usepackage{tikz}
+\usetikzlibrary{arrows, arrows.meta}
+\usepackage[utf8]{inputenc}
+\usepackage{amsfonts}
+\usepackage{mathptmx}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{setspace}
+\usepackage[normalem]{ulem}
+\usepackage{linguex}
+\usepackage[document]{ragged2e}
+\usepackage{fancyhdr}
+\usepackage[left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm]{geometry}
+\usepackage{gb4e}
+\author{Semih Can Aktepe}
+\title{\vspace{-3cm}COGS543 Assignment 4}
+
+\spacing{1.25}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Semih Can Aktepe}
+\rhead{\today}
+\cfoot{\thepage}
+
+\begin{document}\thispagestyle{empty}
+\maketitle
+\justify
+\noindent \textbf{Question 1:}\\
+
+\begin{tikzpicture}
+%Units of the sentence
+\node at (0,0){\underline{John}};
+\node at (3,0){\underline{believes}};
+\node at (6,0){\underline{that}};
+\node at (9,0){\underline{every}};
+\node at (12,0){\underline{man}};
+\node at (15,0){\underline{likes}};
+\node at (18,0){\underline{Mary}};
+
+%Syntactic categories
+\node at (0,-0.5){$S/(S\setminus NP)$};
+\node at (3,-0.5){$(S\setminus NP)/S$};
+\node at (6,-0.5){$S/S$};
+\node at (9,-0.5){$(S/(S\setminus NP))/N$};
+\node at (12,-0.5){$N$};
+\node at (15,-0.5){$(S\setminus NP)/NP$};
+\node at (18,-0.5){$NP$};
+
+%Semantic categories
+\node at (0,-1){$\lambda p.p john'$};
+\node at (3,-1){$\lambda x \lambda y\lambda w. believes'_{w} xy$};
+\node at (6,-1){$\lambda p.p$};
+\node at (9,-1){$\lambda p\lambda q\forall x.(px) \rightarrow (qx)$};
+\node at (12,-1){$\lambda x.man' x$};
+\node at (15,-1){$\lambda x \lambda y\lambda s. likes'_{s} xy$};
+\node at (18,-1){$\lambda p.mary' x$};
+
+%Semantic types
+\node at (0,-1.5){$\langle \langle e,\langle s,t\rangle\rangle,t\rangle$};
+\node at (3,-1.5){$\langle t, \langle e,\langle s,t\rangle\rangle\rangle$};
+\node at (6,-1.5){$\langle t,t\rangle$};
+\node at (9,-1.5){$\langle\langle e,t\rangle,\langle\langle e,\langle s,t\rangle\rangle, t\rangle\rangle$};
+\node at (12,-1.5){$\langle e,t\rangle$};
+\node at (15,-1.5){$\langle e, \langle e,\langle s,t\rangle\rangle\rangle$};
+\node at (18,-1.5){$e$};
+
+%Merge of every and man
+\draw (9,-2)--(12,-2);\node at (12.25,-2){$>$};
+\node at (10.5,-2.5){$S/(S\setminus NP)$};
+\node at (10.5,-3){$\lambda q\forall x.(man' x) \rightarrow (qx)$};
+\node at (10.5,-3.5){$\langle\langle e,\langle s,t\rangle\rangle,t\rangle$};
+
+%Merge of likes and Mary
+\draw (15,-2)--(18,-2);\node at (18.25,-2){$>$};
+\node at (16.5,-2.5){$S\setminus NP$};
+\node at (16.5,-3){$\lambda y\lambda s. likes'_{s} mary' y$};
+\node at (16.5,-3.5){$\langle e,\langle s,t\rangle\rangle$};
+
+%Merge of every man and likes mary
+\draw (10.5,-4)--(16.5,-4);\node at (16.75,-4){$>$};
+\node at (13.5,-4.5){$S$};
+\node at (13.5,-5){$\forall x.(man' x) \rightarrow (likes'_{s} mary' x)$};
+\node at (13.5,-5.5){$t$};
+
+%Merge of that and rest
+\draw (6,-6)--(13.5,-6);\node at (13.75,-6){$>$};
+\node at (10,-6.5){$S$};
+\node at (10,-7){$\forall x.(man' x) \rightarrow (likes'_{s} mary' x)$};
+\node at (10,-7.5){$t$};
+
+%Merge of believes and that
+\draw (3,-8)--(10,-8);\node at (10.25,-8){$>$};
+\node at (6.5,-8.5){$S\setminus NP$};
+\node at (6.5,-9){$\lambda y\lambda w. believes'_{w} (\forall x.(man' x) \rightarrow (likes'_{s} mary' x))y$};
+\node at (6.5,-9.5){$\langle e,\langle s,t\rangle\rangle$};
+
+%Merge of john and rest
+\draw (0,-10)--(6.5,-10);\node at (6.75,-10){$>$};
+\node at (3,-10.5){$S$};
+\node at (3,-11){$believes'_{w} (\forall x.(man' x) \rightarrow (likes'_{s} mary' x))john'$};
+\node at (3,-11.5){$t$};
+
+\end{tikzpicture}
+
+\clearpage
+\noindent \textbf{Question 2:}\\
+
+\begin{tikzpicture}
+%Units of the sentence
+\node at (0,0){\underline{John}};
+\node at (3,0){\underline{believes}};
+\node at (6,0){\underline{that}};
+\node at (9,0){\underline{Mary}};
+\node at (14,0){\underline{may}};
+\node at (18,0){\underline{leave}};
+
+%Syntactic categories
+\node at (0,-0.5){$S/(S\setminus NP)$};
+\node at (3,-0.5){$(S\setminus NP)/S$};
+\node at (6,-0.5){$S/S$};
+\node at (9,-0.5){$S/(S\setminus NP)$};
+\node at (14,-0.5){$(S\setminus NP)/(S\setminus NP)$};
+\node at (18,-0.5){$S\setminus NP$};
+
+%Semantic categories
+\node at (0,-1){$\lambda p.p john'$};
+\node at (3,-1){$\lambda x \lambda y\lambda w. believes'_{s} xy$};
+\node at (6,-1){$\lambda p.p$};
+\node at (9,-1){$\lambda p.mary' x$};
+\node at (14,-1){$\lambda p\lambda x\exists w.O_{wspk'}\wedge pxw$};
+\node at (18,-1){$\lambda x\lambda w. leave'_{w} x$};
+
+%Semantic types
+\node at (0,-1.5){$\langle \langle e,\langle s,t\rangle\rangle,t\rangle$};
+\node at (3,-1.5){$\langle t, \langle e,\langle s,t\rangle\rangle\rangle$};
+\node at (6,-1.5){$\langle t,t\rangle$};
+\node at (9,-1.5){$\langle \langle e,\langle s,t\rangle\rangle,t\rangle$};
+\node at (14,-1.5){$\langle\langle e,\langle s,t\rangle\rangle,\langle e,\langle s,t\rangle\rangle\rangle$};
+\node at (18,-1.5){$\langle e,\langle s,t\rangle\rangle$};
+
+%Merge of may and leave
+\draw (14,-2)--(18,-2);\node at (18.25,-2){$>$};
+\node at (16,-2.5){$S\setminus NP$};
+\node at (16,-3){$\lambda x\exists w.O_{wspk'}\wedge leave'_{w} x$};
+\node at (16,-3.5){$\langle e,\langle s,t\rangle\rangle$};
+
+%Merge of mary and may leave
+\draw (9,-4)--(16,-4);\node at (16.25,-4){$>$};
+\node at (11.5,-4.5){$S$};
+\node at (11.5,-5){$\exists w.O_{wspk'}\wedge leave'_{w} mary'$};
+\node at (11.5,-5.5){$t$};
+
+%Merge of that and rest
+\draw (6,-6)--(11.5,-6);\node at (11.75,-6){$>$};
+\node at (8,-6.5){$S$};
+\node at (8,-7){$\exists w.O_{wspk'}\wedge leave'_{w} mary'$};
+\node at (8,-7.5){$t$};
+
+%Merge of believes and that
+\draw (3,-8)--(8,-8);\node at (8.25,-8){$>$};
+\node at (6.5,-8.5){$S\setminus NP$};
+\node at (6.5,-9){$\lambda y\lambda s. believes'_{s} (\exists w.O_{wspk'}\wedge leave'_{w} mary')y$};
+\node at (6.5,-9.5){$\langle e,\langle s,t\rangle\rangle$};
+
+%Merge of john and rest
+\draw (0,-10)--(6.5,-10);\node at (6.75,-10){$>$};
+\node at (3,-10.5){$S$};
+\node at (3,-11){$believes'_{s} (\exists w.O_{wspk'}\wedge leave'_{w} mary')john'$};
+\node at (3,-11.5){$t$};
+
+\end{tikzpicture}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
